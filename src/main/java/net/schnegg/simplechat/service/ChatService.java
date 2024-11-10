@@ -30,6 +30,8 @@ public class ChatService {
         chat.addMessage(message);
     }
 
+    // Customer and support messages are very similar in this rudimentary implementation.
+    // However, in a real implementation there would most likely be  more differences that make this approach sensible.
     public void addsupportMessage(UUID chatId, Message message) throws ChatNotFoundException {
         Chat chat = chatRepository.findById(chatId).orElseThrow(ChatNotFoundException::new);
         message.setCreatedAt(LocalDateTime.now());
@@ -40,7 +42,7 @@ public class ChatService {
     }
 
     private UUID getSupportAgent() {
-        return UUID.randomUUID(); // Replace with actual logic to get support agent ID
+        return UUID.randomUUID(); // Replace with actual logic to get support agent ID, e.g. from login
     }
 
     public Chat createNewChat(Message message) {
