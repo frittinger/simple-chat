@@ -14,7 +14,6 @@ This is a rudimentary demo customer chat application.
   - Frontend
   - Full chat lifecycle, e.g. ending a chat on customer hang-up
   - Switching support agents
-  - Automated tests
 
 
 # Running the application
