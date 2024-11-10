@@ -43,10 +43,8 @@ public class ChatController {
     public ResponseEntity createCustomerMessage(@PathVariable UUID chatId, @RequestBody MessageDTO message) {
         log.debug("### Create customer message for chat {}: {}", chatId, message.toString());
 
-        Message messageEntity = toMessage(message);
-
         try {
-            chatService.addCustomerMessage(chatId, messageEntity);
+            chatService.addCustomerMessage(chatId, toMessage(message));
         } catch (ChatNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
@@ -55,6 +53,8 @@ public class ChatController {
     }
 
 
+    // Customer and support messages are very similar in this rudimentary implementation.
+    // However, in a real implementation there would most likely be  more differences that make this approach sensible.
     @PostMapping("/support/{chatId}")
     public ResponseEntity createSupportMessage(@PathVariable UUID chatId, @RequestBody MessageDTO message) {
         log.debug("### Create support message for chat {}: {}", chatId, message.toString());
